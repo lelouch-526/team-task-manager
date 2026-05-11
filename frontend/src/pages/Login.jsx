@@ -30,7 +30,7 @@ function Login() {
     try {
 
       const res = await axios.post(
-  "https://team-task-manager-production-7522.up.railway.app/",
+  "https://team-task-manager-production-7522.up.railway.app/api/auth/login",
   formData
 );
 
