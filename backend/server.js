@@ -29,7 +29,7 @@ app.use("/api/tasks", taskRoutes);
 app.get("/", (req, res) => {
 res.send("API Running");
 });
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
 console.log(`Server running on port ${PORT}`);
 });
 // app.use("/api/auth", authRoutes);
