@@ -27,18 +27,21 @@ function Dashboard() {
   const userEmail =
     localStorage.getItem("userEmail") || "User";
 
+  const API =
+    "https://team-task-manager-production-7522.up.railway.app";
+
   const fetchTasks = async () => {
 
     try {
 
       const res = await axios.get(
-  "https://team-task-manager-production-7522.up.railway.app/",
-  {
-    headers: {
-      authorization: token
-    }
-  }
-);
+        `${API}/api/tasks`,
+        {
+          headers: {
+            authorization: token
+          }
+        }
+      );
 
       setTasks(res.data);
 
@@ -75,14 +78,14 @@ function Dashboard() {
     try {
 
       await axios.post(
-  "https://team-task-manager-production-7522.up.railway.app/",
-  formData,
-  {
-    headers: {
-      authorization: token
-    }
-  }
-);
+        `${API}/api/tasks`,
+        formData,
+        {
+          headers: {
+            authorization: token
+          }
+        }
+      );
 
       setFormData({
         title: "",
@@ -104,16 +107,16 @@ function Dashboard() {
     try {
 
       await axios.put(
-  `https://team-task-manager-production-7522.up.railway.app//${id}`,
-  {
-    status: "Done"
-  },
-  {
-    headers: {
-      authorization: token
-    }
-  }
-);
+        `${API}/api/tasks/${id}`,
+        {
+          status: "Done"
+        },
+        {
+          headers: {
+            authorization: token
+          }
+        }
+      );
 
       fetchTasks();
 
@@ -144,8 +147,6 @@ function Dashboard() {
   return (
 
     <div className={`${darkMode ? "bg-slate-900 text-white" : "bg-slate-100"} min-h-screen`}>
-
-      {/* Top Navbar */}
 
       <div className={`${darkMode ? "bg-slate-950" : "bg-white"} shadow-lg px-6 md:px-10 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4`}>
 
@@ -196,8 +197,6 @@ function Dashboard() {
       </div>
 
       <main className="p-6 md:p-10">
-
-        {/* Stats */}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
 
@@ -273,128 +272,6 @@ function Dashboard() {
               />
 
             </div>
-
-          </div>
-
-        </div>
-
-        {/* Create Task */}
-
-        <div className={`${darkMode ? "bg-slate-800" : "bg-white"} rounded-2xl p-8 shadow-lg mb-10`}>
-
-          <div className="flex items-center gap-3 mb-6">
-
-            <PlusCircle className="text-blue-500" />
-
-            <h2 className="text-3xl font-bold">
-              Create Task
-            </h2>
-
-          </div>
-
-          <form onSubmit={createTask}>
-
-            <input
-              type="text"
-              name="title"
-              placeholder="Task Title"
-              value={formData.title}
-              onChange={handleChange}
-              className="w-full p-4 rounded-xl border mb-5 text-black"
-            />
-
-            <textarea
-              name="description"
-              placeholder="Task Description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full p-4 rounded-xl border mb-5 h-32 text-black"
-            />
-
-            <div className="mb-5">
-
-              <label className="flex items-center gap-2 mb-2 text-slate-500">
-
-                <Calendar size={18} />
-
-                Due Date
-
-              </label>
-
-              <input
-                type="date"
-                name="dueDate"
-                value={formData.dueDate}
-                onChange={handleChange}
-                className="w-full p-4 rounded-xl border text-black"
-              />
-
-            </div>
-
-            <button
-              type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition"
-            >
-              Create Task
-            </button>
-
-          </form>
-
-        </div>
-
-        {/* Pending Tasks */}
-
-        <div>
-
-          <h2 className="text-3xl font-bold mb-6">
-            Pending Tasks
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-
-            {tasks
-              .filter((task) => task.status !== "Done")
-              .map((task) => (
-
-              <div
-                key={task._id}
-                className={`${darkMode ? "bg-slate-800" : "bg-white"} rounded-2xl shadow-lg p-6 hover:scale-[1.02] transition`}
-              >
-
-                <div className="flex items-center justify-between mb-4">
-
-                  <h3 className="text-2xl font-bold">
-                    {task.title}
-                  </h3>
-
-                  <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
-                    {task.status}
-                  </span>
-
-                </div>
-
-                <p className="text-slate-500 mb-4">
-                  {task.description}
-                </p>
-
-                {task.dueDate && (
-
-                  <p className="text-sm text-blue-400 mb-5">
-                    Due: {new Date(task.dueDate).toLocaleDateString()}
-                  </p>
-
-                )}
-
-                <button
-                  onClick={() => markDone(task._id)}
-                  className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl transition"
-                >
-                  Mark Done
-                </button>
-
-              </div>
-
-            ))}
 
           </div>
 
