@@ -32,13 +32,13 @@ function Dashboard() {
     try {
 
       const res = await axios.get(
-        "team-task-manager-production-2b0a.up.railway.app",
-        {
-          headers: {
-            authorization: token
-          }
-        }
-      );
+  "https://team-task-manager-production-2b0a.up.railway.app/api/tasks",
+  {
+    headers: {
+      authorization: token
+    }
+  }
+);
 
       setTasks(res.data);
 
@@ -75,14 +75,14 @@ function Dashboard() {
     try {
 
       await axios.post(
-        "team-task-manager-production-2b0a.up.railway.app",
-        formData,
-        {
-          headers: {
-            authorization: token
-          }
-        }
-      );
+  "https://team-task-manager-production-2b0a.up.railway.app/api/tasks",
+  formData,
+  {
+    headers: {
+      authorization: token
+    }
+  }
+);
 
       setFormData({
         title: "",
@@ -104,16 +104,16 @@ function Dashboard() {
     try {
 
       await axios.put(
-        `team-task-manager-production-2b0a.up.railway.app`,
-        {
-          status: "Done"
-        },
-        {
-          headers: {
-            authorization: token
-          }
-        }
-      );
+  `https://team-task-manager-production-2b0a.up.railway.app/api/tasks/${id}`,
+  {
+    status: "Done"
+  },
+  {
+    headers: {
+      authorization: token
+    }
+  }
+);
 
       fetchTasks();
 

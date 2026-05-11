@@ -30,9 +30,9 @@ function Login() {
     try {
 
       const res = await axios.post(
-        "team-task-manager-production-2b0a.up.railway.app",
-        formData
-      );
+  "https://team-task-manager-production-2b0a.up.railway.app/api/auth/login",
+  formData
+);
 
       localStorage.setItem(
         "token",
