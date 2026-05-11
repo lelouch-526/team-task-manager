@@ -32,7 +32,7 @@ function Dashboard() {
     try {
 
       const res = await axios.get(
-        "http://localhost:5000/api/tasks",
+        "team-task-manager-production-2b0a.up.railway.app",
         {
           headers: {
             authorization: token
@@ -75,7 +75,7 @@ function Dashboard() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/tasks",
+        "team-task-manager-production-2b0a.up.railway.app",
         formData,
         {
           headers: {
@@ -104,7 +104,7 @@ function Dashboard() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/tasks/${id}`,
+        `team-task-manager-production-2b0a.up.railway.app`,
         {
           status: "Done"
         },

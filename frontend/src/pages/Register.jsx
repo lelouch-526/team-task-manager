@@ -27,7 +27,7 @@ function Register() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "team-task-manager-production-2b0a.up.railway.app",
         formData
       );
 
