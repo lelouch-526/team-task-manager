@@ -26,6 +26,9 @@ const PORT = process.env.PORT || 8080;
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
+app.get("/", (req, res) => {
+res.send("API Running");
+});
 app.listen(PORT, "0.0.0.0", () => {
 console.log(`Server running on port ${PORT}`);
 });
